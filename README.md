@@ -1,1 +1,5 @@
-# Recyclerview-MVVM-Retrofit
+# Recyclerview
+#Single State MVVM
+#Retrofit
+#Kotlin Coroutines
+#UnitTests
