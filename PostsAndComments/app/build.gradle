@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.akash.postcommentslist"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    def retrofitVersion = '2.5.1-SNAPSHOT'
+    def mockkVersion = '1.9.1'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutines"
+
+
+    //Constraint Layout
+    implementation "androidx.constraintlayout:constraintlayout:${constraintLayout}"
+    implementation "androidx.constraintlayout:constraintlayout-solver:${constraintLayout}"
+
+    //Koin DI
+    implementation "org.koin:koin-android:$koin"
+    implementation "org.koin:koin-androidx-viewmodel:$koin"
+    testImplementation "org.koin:koin-test:$koin"
+
+    //Logging
+    implementation "com.jakewharton.timber:timber:$timber"
+
+    //Networking
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    implementation "com.google.code.gson:gson:$gson"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    //Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigation"
+
+    //LifeCycle
+    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycle"
+    api "androidx.lifecycle:lifecycle-extensions:$archLifecycle"
+
+    // optional - Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:$archLifecycle"
+    androidTestImplementation "io.mockk:mockk-android:$mockkVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+
+
+}
