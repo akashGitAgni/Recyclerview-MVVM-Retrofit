@@ -2,16 +2,16 @@ package com.akash.postsandcomments.comments
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akash.postsandcomments.R
-import com.akash.postsandcomments.Utils.MainThreadScope
-import com.akash.postsandcomments.Utils.toast
+import com.akash.postsandcomments.utils.MainThreadScope
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_comments.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -46,7 +46,7 @@ class CommentsFragment : Fragment() {
         }
 
         commentsViewModel = getViewModel()
-        commentsViewModel.commentsLiveData?.observe(this, Observer { commentState ->
+        commentsViewModel.commentsLiveData.observe(this, Observer { commentState ->
             if (commentState == null) {
                 return@Observer
             }
@@ -59,7 +59,8 @@ class CommentsFragment : Fragment() {
                 is CommentsState.Error -> {
                     setUpdateLayoutVisibilty(View.GONE)
                     context?.let {
-                        commentState.message?.toast(it)
+                        val message = commentState.message ?: getString(R.string.error)
+                        Snackbar.make(activity!!.rootLayout, message, Snackbar.LENGTH_LONG).show()
                     }
                 }
 

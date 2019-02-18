@@ -1,4 +1,4 @@
-package com.akash.postsandcomments.Utils
+package com.akash.postsandcomments.utils
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -6,7 +6,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 import kotlin.coroutines.CoroutineContext
 
-open class CouroutineViewModel(private val uiContext: CoroutineContext) : ViewModel(),CoroutineScope {
+open class CouroutineViewModel(private val uiContext: CoroutineContext) : ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = uiContext + job

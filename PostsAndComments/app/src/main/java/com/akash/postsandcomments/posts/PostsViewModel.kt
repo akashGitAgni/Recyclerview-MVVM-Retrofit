@@ -2,7 +2,7 @@ package com.akash.postsandcomments.posts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.akash.postsandcomments.Utils.CouroutineViewModel
+import com.akash.postsandcomments.utils.CouroutineViewModel
 import com.akash.postsandcomments.data.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -5,4 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="loading">Loading…</string>
+    <string name="error">Error</string>
+    <string name="not_connected">Network not connected to internet</string>
+    <string name="emty_body">Empty Body</string>
 </resources>

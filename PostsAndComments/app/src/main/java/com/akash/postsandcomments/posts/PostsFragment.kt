@@ -9,9 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akash.postsandcomments.R
-import com.akash.postsandcomments.Utils.MainThreadScope
-import com.akash.postsandcomments.Utils.toast
+import com.akash.postsandcomments.utils.MainThreadScope
 import com.akash.postsandcomments.data.Post
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_posts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -59,7 +59,8 @@ class PostsFragment : Fragment(),OnPostClickListener {
                 is PostsState.Error -> {
                     setUpdateLayoutVisibilty(View.GONE)
                     context?.let {
-                        postState.message?.toast(it)
+                        val message = postState.message ?: getString(R.string.error)
+                        Snackbar.make(activity!!.rootLayout, message, Snackbar.LENGTH_LONG).show()
                     }
                 }
 

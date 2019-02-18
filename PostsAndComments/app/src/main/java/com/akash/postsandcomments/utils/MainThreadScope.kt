@@ -1,4 +1,4 @@
-package com.akash.postsandcomments.Utils
+package com.akash.postsandcomments.utils
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
