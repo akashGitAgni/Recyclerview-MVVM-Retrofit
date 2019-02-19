@@ -16,7 +16,7 @@ val dataSourceModule = module {
 
     single { createRetrofitInstance() }
 
-    factory { get<Retrofit>().create(Api::class.java) }
+    single { get<Retrofit>().create(Api::class.java) }
 
     single { NetworkState(androidApplication()) }
 
