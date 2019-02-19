@@ -44,7 +44,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutines"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutines"
 
-
     //Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:${constraintLayout}"
     implementation "androidx.constraintlayout:constraintlayout-solver:${constraintLayout}"

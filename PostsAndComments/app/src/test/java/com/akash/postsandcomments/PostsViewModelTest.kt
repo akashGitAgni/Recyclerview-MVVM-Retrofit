@@ -24,7 +24,7 @@ class PostsViewModelTest : BaseTestClass() {
     }
 
     @Test
-    fun testGetPostsDataIsSuccesful() =
+    fun testGetPostsDataIsSuccessful() =
         runBlocking<Unit> {
             postsViewModel.postLiveData.observeForever(mockObserver)
             assert(postsViewModel.postLiveData.value == null)

@@ -23,8 +23,8 @@ class CommentsViewModelTest : BaseTestClass() {
     }
 
     @Test
-    fun testGetCommentsDataIsSuccesful() =
-        runBlocking<Unit> {
+    fun testGetCommentsDataIsSuccessful() =
+        runBlocking {
             commentsViewModel.commentsLiveData.observeForever(mockObserver)
             assert(commentsViewModel.commentsLiveData.value == null)
             commentsViewModel.getComments(1).join()

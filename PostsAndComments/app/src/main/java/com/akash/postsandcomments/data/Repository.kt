@@ -23,7 +23,14 @@ class RepositoryImpl(
             return@withContext PostsState.Error(application.getString(R.string.not_connected))
         }
 
-        val response = postApi.getPostsResponse()
+        val response = try {
+            postApi.getPostsResponse()
+        } catch (e:Throwable){
+            //Sending a generic exception to the view for now
+
+            Timber.e(e)
+            return@withContext PostsState.Error(application.getString(R.string.network_error))
+        }
 
         return@withContext if (response.isSuccessful) {
             response.body()?.let {
@@ -41,7 +48,13 @@ class RepositoryImpl(
             return@withContext CommentsState.Error(application.getString(R.string.not_connected))
         }
 
-        val response = postApi.getComments(postId)
+        val response =try {
+            postApi.getComments(postId)
+        } catch (e:Throwable){
+            //Sending a generic exception to the view for now
+            Timber.e(e)
+            return@withContext CommentsState.Error(application.getString(R.string.network_error))
+        }
 
         return@withContext if (response.isSuccessful) {
             response.body()?.let {

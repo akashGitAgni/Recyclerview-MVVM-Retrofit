@@ -4,20 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akash.postsandcomments.R
-import com.akash.postsandcomments.utils.MainThreadScope
 import com.akash.postsandcomments.data.Post
+import com.akash.postsandcomments.utils.MainThreadScope
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_posts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
-class PostsFragment : Fragment(),OnPostClickListener {
+class PostsFragment : Fragment(), OnPostClickListener {
 
 
     private val uiScope = MainThreadScope()
@@ -38,7 +39,15 @@ class PostsFragment : Fragment(),OnPostClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val postAdapter = PostAdapter(emptyList(),this)
+
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
+            setHomeButtonEnabled(false)
+            title = getString(R.string.posts)
+            show()
+        }
+
+        val postAdapter = PostAdapter(emptyList(), this)
         postsRecyclerView?.apply {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)

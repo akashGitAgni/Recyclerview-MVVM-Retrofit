@@ -6,6 +6,9 @@
 
     <string name="loading">Loading…</string>
     <string name="error">Error</string>
+    <string name="network_error">Network Error</string>
     <string name="not_connected">Network not connected to internet</string>
     <string name="emty_body">Empty Body</string>
+    <string name="comments">Comments</string>
+    <string name="posts">Posts</string>
 </resources>

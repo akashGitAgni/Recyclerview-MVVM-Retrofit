@@ -3,8 +3,10 @@ package com.akash.postsandcomments.comments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -20,11 +22,12 @@ class CommentsFragment : Fragment() {
     private lateinit var commentsViewModel: CommentsViewModel
     private val uiScope = MainThreadScope()
 
-    val args: CommentsFragmentArgs by navArgs()
+    private val args: CommentsFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(uiScope)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -37,6 +40,14 @@ class CommentsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            show()
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+            title = getString(R.string.comments)
+        }
+
         val commentsAdapter = CommentsAdapter(emptyList())
 
         commentsRecyclerView?.apply {
@@ -72,6 +83,16 @@ class CommentsFragment : Fragment() {
         })
 
         commentsViewModel.getComments(args.postId)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                activity!!.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 
